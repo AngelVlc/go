@@ -72,11 +72,40 @@ func BenchmarkWorkingHours(b *testing.B) {
 }
 
 func ExampleWorkingMonth_WorkingHours() {
-	wm := WorkingMonth{2019, 8}
+	wm := WorkingMonth{
+		Year: 2019, 
+		Month: 8,
+	}
 
 	result := wm.WorkingHours()
 
 	fmt.Println(result)
 
 	// Output: 176
+}
+
+func ExampleWorkingMonth_WorkingDays() {
+	wm := WorkingMonth{
+		Year: 2019, 
+		Month: 8,
+	}
+
+	result := wm.WorkingDays()
+
+	fmt.Println(result)
+
+	// Output: 22
+}
+
+func ExampleWorkingMonth_TotalDays() {
+	wm := WorkingMonth{
+		Year: 2019, 
+		Month: 8,
+	}
+
+	result := wm.TotalDays()
+
+	fmt.Println(result)
+
+	// Output: 31
 }
