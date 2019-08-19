@@ -2,27 +2,27 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"github.com/AngelVlc/go/workingmonth"
+	"log"
+	"time"
 )
 
 func main() {
-	var year, month int
+	var discountDays int
 
-	fmt.Print("Year: ")
-	if _, err:= fmt.Scan(&year); err != nil {
+	fmt.Print("PTOs and holiday days: ")
+	if _, err := fmt.Scan(&discountDays); err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Print("Month: ")
-	if _, err:= fmt.Scan(&month); err != nil {
-		log.Fatal(err)
-	}
+	now := time.Now()
 
 	wm := workingmonth.WorkingMonth{
-		Year: year, 
-		Month: month,
+		Year:  now.Year(),
+		Month: int(now.Month()),
 	}
-	fmt.Printf("Working hours for %v/%02d: %v\n", wm.Year, wm.Month, wm.WorkingHours())
-	fmt.Printf("Working hours until today: %v\n", wm.WorkingHoursUntilToday())
+
+	hoursUntilToday := wm.WorkingHoursUntilToday() - (discountDays * 8)
+	fmt.Printf("Working hours until today: %v\n", hoursUntilToday)
+	fmt.Printf("Working hours until month end:  %v\n", wm.WorkingHours())
 }
