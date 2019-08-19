@@ -24,4 +24,5 @@ func main() {
 		Month: month,
 	}
 	fmt.Printf("Working hours for %v/%02d: %v\n", wm.Year, wm.Month, wm.WorkingHours())
+	fmt.Printf("Working hours until today: %v\n", wm.WorkingHoursUntilToday())
 }
