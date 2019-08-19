@@ -1,70 +1,70 @@
 package workingmonth
 
 type testDay struct {
-	year            int
-	month           int
-	day             int
-	isWeekend       bool
-	hoursUntilToday int
+	year          int
+	month         int
+	day           int
+	isWeekend     bool
+	hoursUntilDay int
 }
 
 func testDays() []testDay {
 	r := make([]testDay, 7)
 
 	r[0] = testDay{
-		year:            2019,
-		month:           8,
-		day:             12,
-		isWeekend:       false,
-		hoursUntilToday: 64,
+		year:          2019,
+		month:         8,
+		day:           12,
+		isWeekend:     false,
+		hoursUntilDay: 64,
 	}
 
 	r[1] = testDay{
-		year:            2019,
-		month:           8,
-		day:             13,
-		isWeekend:       false,
-		hoursUntilToday: 72,
+		year:          2019,
+		month:         8,
+		day:           13,
+		isWeekend:     false,
+		hoursUntilDay: 72,
 	}
 
 	r[2] = testDay{
-		year:            2019,
-		month:           8,
-		day:             14,
-		isWeekend:       false,
-		hoursUntilToday: 80,
+		year:          2019,
+		month:         8,
+		day:           14,
+		isWeekend:     false,
+		hoursUntilDay: 80,
 	}
 
 	r[3] = testDay{
-		year:            2019,
-		month:           8,
-		day:             15,
-		isWeekend:       false,
-		hoursUntilToday: 88,
+		year:          2019,
+		month:         8,
+		day:           15,
+		isWeekend:     false,
+		hoursUntilDay: 88,
 	}
 
 	r[4] = testDay{
-		year:            2019,
-		month:           8,
-		day:             16,
-		isWeekend:       false,
-		hoursUntilToday: 96,
+		year:          2019,
+		month:         8,
+		day:           16,
+		isWeekend:     false,
+		hoursUntilDay: 96,
 	}
 
 	r[5] = testDay{
-		year:            2019,
-		month:           8,
-		day:             17,
-		isWeekend:       true,
-		hoursUntilToday: 96,
+		year:          2019,
+		month:         8,
+		day:           17,
+		isWeekend:     true,
+		hoursUntilDay: 96,
 	}
 
 	r[6] = testDay{
-		year:            2019,
-		month:           8,
-		day:             18,
-		isWeekend:       true,
-		hoursUntilToday: 96,
+		year:          2019,
+		month:         8,
+		day:           18,
+		isWeekend:     true,
+		hoursUntilDay: 96,
 	}
 
 	return r

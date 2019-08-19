@@ -9,8 +9,9 @@ import (
 // WorkingMonth contains methods to get the working hours
 // in a given month
 type WorkingMonth struct {
-	Year  int
-	Month int
+	Year    int
+	Month   int
+	nowFunc func() time.Time
 }
 
 func (m WorkingMonth) toTimeMonth() time.Month {
@@ -27,11 +28,31 @@ func (m WorkingMonth) TotalDays() int {
 
 // WorkingDays returns the number of working days in the month
 func (m WorkingMonth) WorkingDays() int {
-	month := m.toTimeMonth()
 	totalDays := m.TotalDays()
+	return m.workingDaysUntilDay(totalDays)
+}
+
+// WorkingDaysUntilToday returns the number of working days until today
+func (m WorkingMonth) WorkingDaysUntilToday() int {
+	return m.workingDaysUntilDay(m.now().Day())
+}
+
+// WorkingHours returns the number of working hours in the month
+func (m WorkingMonth) WorkingHours() int {
+	return m.WorkingDays() * 8
+}
+
+// WorkingHoursUntilToday returns the number of working hours at the
+// end of today
+func (m WorkingMonth) WorkingHoursUntilToday() int {
+	return m.WorkingDaysUntilToday() * 8
+}
+
+func (m WorkingMonth) workingDaysUntilDay(day int) int {
+	month := m.toTimeMonth()
 	date := time.Date(m.Year, month, 1, 0, 0, 0, 0, time.UTC)
 	var result int
-	for date.Month() == month && date.Day() <= totalDays {
+	for date.Month() == month && date.Day() <= day {
 		if !dayIsWeekend(&date) {
 			result++
 		}
@@ -39,11 +60,6 @@ func (m WorkingMonth) WorkingDays() int {
 	}
 
 	return result
-}
-
-// WorkingHours returns the number of working hours in the month
-func (m WorkingMonth) WorkingHours() int {
-	return m.WorkingDays() * 8
 }
 
 // dayIsWeekend returns true if the week day of a given time
@@ -55,4 +71,11 @@ func dayIsWeekend(t *time.Time) bool {
 	default:
 		return false
 	}
+}
+
+func (m WorkingMonth) now() time.Time {
+	if m.nowFunc != nil {
+		return m.nowFunc()
+	}
+	return time.Now()
 }
